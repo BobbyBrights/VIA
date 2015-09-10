@@ -1,0 +1,1 @@
+[20-Jul-2014 11:09:03 America/New_York] PHP Fatal error:  Call to undefined function current_theme_supports() in /home/visionin/public_html/wp-content/themes/via2/framework/php/auto-updates/auto-updates.php on line 6
