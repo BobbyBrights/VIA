@@ -121,6 +121,43 @@ body#top div#wrap_all header#header #header_meta .container ul li a{
 
 body#top div#wrap_all header#header #header_main {
 	border: none;
+	z-index: 100;
+}
+
+body#top div#wrap_all header#header #header_main .container strong.logo {
+	position: initial;
+	overflow: initial;
+}
+
+body#top div#wrap_all header#header #header_main .container nav.main_menu {
+	position: initial;
+	display: inline-block;
+	height: 45px;
+}
+
+body#top div#wrap_all header#header #header_main .container nav.main_menu div ul li {
+	float: none;
+}
+
+body#top div#wrap_all header#header #header_main .container nav.main_menu div ul li a {
+	width: 130px;
+	height: 45px;
+	color: white;
+	background-color: black;
+}
+
+body#top div#wrap_all header#header #header_main .container nav.main_menu div ul li:last-child a {
+	padding-right: 13px;
+}
+
+body#top div#wrap_all header#header #header_main .container nav.main_menu div ul li a span.avia-menu-text {
+	display: block;
+	height: 100%;
+	line-height: 3em;
+}
+
+body#top div#wrap_all header#header #header_main .container nav.main_menu div ul li a span.avia-menu-fx {
+	display: none;
 }
 
 /* |||||| Body CSS |||||| */
