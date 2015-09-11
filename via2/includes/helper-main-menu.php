@@ -70,6 +70,7 @@ if($headerS['header_topbar'] == true)
 							
 			        ?>
 			      </div>
+			      <?php get_search_form(); ?>
 		</div>
 
 <?php } ?>
