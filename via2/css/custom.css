@@ -2,10 +2,6 @@
 
 /* General Custom CSS */
 
-html {
-	background-color: red !important;
-}
-
 #top #socket .social_bookmarks {
 	position: absolute;
 	right: 0;
@@ -67,7 +63,87 @@ ul.ABt_testimonials_slide {
 	display: block;
 }
 
+/* |||||| Base CSS |||||| */
 
+html {
+	margin: 20px 20px 40px 20px;
+	border: solid 15px black;
+	border-bottom-width: 0;
+	background-color: white;
+}
+
+a#scroll-top-link {
+	display: none;
+}
+
+/* |||||| Header CSS |||||| */
+
+body#top div#wrap_all header#header {
+	position: initial;
+}
+
+body#top div#wrap_all header#header #header_meta {
+	height: 40px;
+	padding: 10px;
+	display: table;
+	box-shadow: none;
+	float: right;
+	background-color: transparent;
+}
+
+body#top div#wrap_all header#header #header_meta .container {
+	width: auto;
+	height: inherit;
+	background-color: transparent;
+}
+
+body#top div#wrap_all header#header #header_meta .container ul {
+	height: inherit;
+	margin: 0;
+}
+
+body#top div#wrap_all header#header #header_meta .container ul li {
+	border: none;
+	display: table;
+}
+
+body#top div#wrap_all header#header #header_meta .container ul li:hover a {
+	background-color: transparent;
+}
+
+body#top div#wrap_all header#header #header_meta .container ul li a{
+	font-size: 22px;
+	display: table;
+	width: 20px;
+	line-height: 38px;
+	color: black;
+}
+
+body#top div#wrap_all header#header #header_main {
+	border: none;
+}
+
+/* |||||| Body CSS |||||| */
+
+body#top div#wrap_all div#main {
+	padding: 20px;
+}
+
+/* |||||| Footer CSS |||||| */
+
+body#top div#wrap_all footer .container {
+	width: auto;
+	margin: 0 15px 0 0;
+}
+
+body#top div#wrap_all footer .container span.copyright {
+	float: right;
+	text-transform: uppercase;
+}
+
+body#top div#wrap_all footer .container ul {
+	display: none;
+}
 
 /*
 Desktop Styles
