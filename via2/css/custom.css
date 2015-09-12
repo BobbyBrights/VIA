@@ -197,7 +197,9 @@ body#top div#wrap_all header#header #header_main .container nav.main_menu div ul
 body#top div#wrap_all header#header #header_main .container nav.main_menu div ul li a span.avia-menu-text {
 	display: block;
 	height: 100%;
-	line-height: 3em;
+	font-weight: 400;
+	line-height: 3.3;
+	font-size: .9em;
 }
 
 body#top div#wrap_all header#header #header_main .container nav.main_menu div ul li a span.avia-menu-fx {
@@ -255,14 +257,17 @@ body#top div#wrap_all div#main .container_wrap .container > * {
 	box-sizing: border-box;
 }
 
-body#top div#wrap_all div#main .container_wrap .container .one_col {
-	width: 25%;
+.one_col {
+	width: 25% !important;
 }
 
-body#top div#wrap_all div#main .container_wrap .container .two_col {
-	width: 50%;
+.two_col {
+	width: 50% !important;
 }
 
+.three_col {
+	width: 75% !important;
+}
 
 body#top div#wrap_all div#main .container_wrap .container .template-page article .entry-content-wrapper .entry-content .flex_column .sort_width_container {
 	display: none;
@@ -566,10 +571,25 @@ body#top div#wrap_all div#main .container_wrap .container .one_col ul.featured_s
 
 .container#about .one_col .post-entry .entry-content-wrapper .entry-content .flex_column .avia-image-container .avia-image-container-inner img {
 	border-radius: 0;
+	-webkit-filter: grayscale(100%);
+	-o-filter: grayscale(100%);
+	filter: grayscale(100%);
 }
 
 .container#about .one_col .post-entry .entry-content-wrapper .entry-content .flex_column .av_textblock_section:first-of-type {
 	padding-left: 10px;
+	width: 60%;
+	height: 8.8vw;
+	position: relative;
+}
+
+.container#about .one_col .post-entry .entry-content-wrapper .entry-content .flex_column .av_textblock_section:first-of-type .avia_textblock {
+	position: absolute;
+	bottom: 0;
+}
+
+.container#about .one_col .post-entry .entry-content-wrapper .entry-content .flex_column .av_textblock_section:first-of-type .avia_textblock p {
+	margin: 0;
 }
 
 .container#about .one_col .post-entry .entry-content-wrapper .entry-content .flex_column br {
@@ -580,14 +600,15 @@ body#top div#wrap_all div#main .container_wrap .container .one_col ul.featured_s
 	display: inline-block;
 }
 
-.container#about .one_col .post-entry .entry-content-wrapper .entry-content .flex_column .av_textblock_section:first-of-type {
-	width: 60%;
+.container#about .one_col .post-entry .entry-content-wrapper .entry-content .flex_column .av_textblock_section .avia_textblock h4 {
+	display: none;
 }
 
-.container#about .one_col .post-entry .entry-content-wrapper .entry-content .flex_column .av_textblock_section .avia_textblock h4 {
-	font-size: 1em;
-	float: left;
+.container#about .one_col .post-entry .entry-content-wrapper .entry-content .flex_column .av_textblock_section .avia_textblock {
+	line-height: 1.4;
 }
+
+
 
 /* ===============
 	Footer CSS
