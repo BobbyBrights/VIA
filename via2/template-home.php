@@ -47,43 +47,45 @@ global $avia_config;
 					<?php
 						$portfolio = new WP_Query('post_type=portfolio&posts_per_page=1');
 
-						if ( $portfolio->have_posts() ) : while ( $portfolio->have_posts() ) : $portfolio->the_post(); ?>	
+						if ( $portfolio->have_posts() ) : while ( $portfolio->have_posts() ) : $portfolio->the_post(); ?>
 						<li>
-							<p class="featured_release_header"><strong>VIA Records latest release</strong></p>
-							<p class="featured_release_title"><?php the_title(); ?></p>
-							<?php the_post_thumbnail( array(800,800), array( 'class' => 'featured_release_thumbnail' ) ); ?>
-							<p class="via_records_link"><a href="#">VIA Records</a></p>
+							<a href="<?php the_permalink(); ?>">
+								<p class="featured_release_header"><strong>VIA Records latest release</strong></p>
+								<p class="featured_release_title"><?php the_title(); ?></p>
+								<?php the_post_thumbnail( array(800,800), array( 'class' => 'featured_release_thumbnail' ) ); ?>
+								<p class="via_records_link"><a href="#">VIA Records</a></p>
+							</a>
 						</li>
 					<?php endwhile; endif; wp_reset_query(); ?>
-					</ul>  
+					</ul>
 				</div>
 				<div class="one_col">
 					<ul class="featured_social">
-					<?php 
+					<?php
 						$tweet_args = array( 'category_name' => 'tweet', 'posts_per_page' => 1 );
 						$facebook_args = array( 'category_name' => 'facebook-post', 'posts_per_page' => 1 );
 
 						$featured_tweet = get_posts( $tweet_args );
-						$featured_fbpost = get_posts( $facebook_args ); 
+						$featured_fbpost = get_posts( $facebook_args );
 
-						foreach ( $featured_tweet as $post ) : setup_postdata( $post ); 
+						foreach ( $featured_tweet as $post ) : setup_postdata( $post );
 
-							$tweet_date = new DateTime( get_field( 'event_date' ) ); ?>						
+							$tweet_date = new DateTime( get_field( 'event_date' ) ); ?>
 						<li>
-							<p>tweet</p>
+							<p>Tweet</p>
 							<?php the_content(' '); ?>
-							<p class="post_date"><?php echo $tweet_date->format('F j Y'); ?></p>				
+							<p class="post_date"><?php echo $tweet_date->format('F j Y'); ?></p>
 						</li>
-						<?php 
-							wp_reset_postdata(); endforeach; 
+						<?php
+							wp_reset_postdata(); endforeach;
 
-							foreach ( $featured_fbpost as $post ) : setup_postdata( $post ); 
+							foreach ( $featured_fbpost as $post ) : setup_postdata( $post );
 
 								$tweet_date = new DateTime( get_field( 'event_date' ) ); ?>
 						<li>
-							<p>facebook</p>
+							<p>Facebook</p>
 							<?php the_content(' '); ?>
-							<p class="post_date"><?php echo $tweet_date->format('F j Y'); ?></p>			
+							<p class="post_date"><?php echo $tweet_date->format('F j Y'); ?></p>
 						</li>
 					<?php endforeach; wp_reset_postdata(); ?>
 					</ul>

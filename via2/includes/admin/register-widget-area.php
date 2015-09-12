@@ -146,3 +146,17 @@
 			break;
 		}
 	}
+
+	// homepage
+
+	function homepage_widget()
+	{
+		register_sidebar(array(
+		'name' => 'Homepage',
+		'before_widget' => '<section id="%1$s" class="homepage_widget widget clearfix %2$s">', 
+		'after_widget' => '<span class="seperator extralight-border"></span></section>', 
+		'before_title' => '<h3 class="widgettitle">', 
+		'after_title' => '</h3>', 
+		));
+	}
+	add_action( 'widgets_init', 'homepage_widget' );

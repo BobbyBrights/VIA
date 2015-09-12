@@ -20,15 +20,15 @@ global $avia_config;
 			<div class='container' id="about">
 
 				<div class="two_col">
+					<?php 
+						$via_calendar_args = array( 'post_type' => 'post', 'category_name' => 'calendar', 'posts_per_page' => -1 );
+						$via_calendar_posts = get_posts( $via_calendar_args );
+
+						if ( $via_calendar_posts ) : ?>
 					<div class="via_calendar">
 						<p class="via_calendar_header">Calendar</p>
 						<ul class="via_calendar_entries">
-						<?php
-
-							$via_calendar_args = array( 'post_type' => 'post', 'category_name' => 'calendar', 'posts_per_page' => -1 );
-							$via_calendar_posts = get_posts( $via_calendar_args );
-
-							foreach ( $via_calendar_posts as $post ) : setup_postdata( $post );
+						<?php foreach ( $via_calendar_posts as $post ) : setup_postdata( $post );
 
 								$event_date = new DateTime( get_field( 'event_date' ) );
 								$event_time = get_field( 'event_time' );
@@ -44,11 +44,13 @@ global $avia_config;
 						<?php endforeach; wp_reset_postdata(); ?>
 						</ul>
 					</div>
+					<?php endif; ?>
 					<?php echo get_field('VIA_description'); ?>
 				</div>
 
 				<div class="one_col">
 					<div class="about_follow">
+						<img src="<?php bloginfo('url'); ?>/wp-content/themes/via2/images/layout/marker_icon.svg" alt="" class="map-marker">
 						<strong>
 							VisionIntoArt <br />
 							25 Columbus Circle 68B <br />
@@ -56,9 +58,17 @@ global $avia_config;
 						</strong>
 						<p>Telephone 646.942.7659 <br />info@visionintoart.org</p>
 						<p>Follow us:</p>
-						<ul class="social_icons">
-
-						</ul>
+						<ul class="social_icons-about noLightbox social_bookmarks icon_count_3">
+							<li class="social_bookmarks_twitter av-social-link-twitter social_icon_1">
+								<a target="_blank" href="https://twitter.com/visionintoart" aria-hidden="true" data-av_icon="" data-av_iconfont="entypo-fontello" title="Twitter"><span class="avia_hidden_link_text">Twitter</span></a>
+							</li>
+							<li class="social_bookmarks_facebook av-social-link-facebook social_icon_2">
+								<a target="_blank" href="https://www.facebook.com/VisionIntoArt" aria-hidden="true" data-av_icon="" data-av_iconfont="entypo-fontello" title="Facebook"><span class="avia_hidden_link_text">Facebook</span></a>
+							</li>
+							<li class="social_bookmarks_instagram av-social-link-instagram social_icon_3">
+								<a target="_blank" href="http://instagram.com/visionintoart/" aria-hidden="true" data-av_icon="" data-av_iconfont="entypo-fontello" title="Instagram"><span class="avia_hidden_link_text">Instagram</span></a>
+							</li>
+						</ul>	
 					</div>
 					<?php echo get_field('board_members_description'); ?>
 				</div>
