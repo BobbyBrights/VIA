@@ -49,10 +49,12 @@ global $avia_config;
 
 						if ( $portfolio->have_posts() ) : while ( $portfolio->have_posts() ) : $portfolio->the_post(); ?>	
 						<li>
-							<p class="featured_release_header"><strong>VIA Records latest release</strong></p>
-							<p class="featured_release_title"><?php the_title(); ?></p>
-							<?php the_post_thumbnail( array(800,800), array( 'class' => 'featured_release_thumbnail' ) ); ?>
-							<p class="via_records_link"><a href="#">VIA Records</a></p>
+							<a href="<?php the_permalink(); ?>">
+								<p class="featured_release_header"><strong>VIA Records latest release</strong></p>
+								<p class="featured_release_title"><?php the_title(); ?></p>
+								<?php the_post_thumbnail( array(800,800), array( 'class' => 'featured_release_thumbnail' ) ); ?>
+								<p class="via_records_link"><a href="#">VIA Records</a></p>
+							</a>
 						</li>
 					<?php endwhile; endif; wp_reset_query(); ?>
 					</ul>  
