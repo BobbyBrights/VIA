@@ -19,7 +19,7 @@
 				$t_sub =  avia_post_meta($blogpage_id, 'subtitle');
 			}
 
-			if(!empty($blogpage_id) && get_post_meta($blogpage_id, 'header', true) != 'no') 
+			if(!empty($blogpage_id) && get_post_meta($blogpage_id, 'header', true) != 'no')
 			{
 				echo avia_title(array('heading'=>'strong', 'title' => $title, 'link' => $t_link, 'subtitle' => $t_sub));
 			}
@@ -28,8 +28,7 @@
 
 
 		<div class='container_wrap container_wrap_first main_color <?php avia_layout_class( 'main' ); ?>'>
-
-			<div class='container template-blog '>
+			<div class='container template-blog' id="index">
 
 				<main class='content <?php avia_layout_class( 'content' ); ?> units' <?php avia_markup_helper(array('context' => 'content'));?>>
 

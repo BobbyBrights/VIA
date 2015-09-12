@@ -112,9 +112,8 @@ if($headerS['header_topbar'] == true)
 						    if($headerS['bottom_menu']){ $extraClose = "</div></div><div id='header_main_alternate' class='container_wrap'><div class='container'>";  }
 
 						    echo $extraClose;
-
+						    /* echo "<button data-av_icon='' data-av_iconfont='entypo-fontello'>Menu</button>"; */
 						    echo "<nav class='main_menu' data-selectname='".__('Select a page','avia_framework')."' ".avia_markup_helper(array('context' => 'nav', 'echo' => false)).">";
-
 						        $avia_theme_location = 'avia';
 						        $avia_menu_class = $avia_theme_location . '-menu';
 						        $args = array(

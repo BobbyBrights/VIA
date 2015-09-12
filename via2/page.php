@@ -41,6 +41,4 @@ global $avia_config;
 
 		</div><!-- close default .container_wrap element -->
 
-
-
 <?php get_footer(); ?>

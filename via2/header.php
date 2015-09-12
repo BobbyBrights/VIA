@@ -3,7 +3,7 @@
 
 	$style 		= $avia_config['box_class'];
 	$responsive	= avia_get_option('responsive_layout','responsive');
-	$blank 		= isset($avia_config['template']) ? $avia_config['template'] : "";	
+	$blank 		= isset($avia_config['template']) ? $avia_config['template'] : "";
 ?>
 
 
@@ -31,6 +31,7 @@
 
 <!-- add feeds, pingback and stuff-->
 <link rel="profile" href="http://gmpg.org/xfn/11" />
+<link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:700,500' rel='stylesheet' type='text/css'>
 <link rel="alternate" type="application/rss+xml" title="<?php echo get_bloginfo('name'); ?> RSS2 Feed" href="<?php avia_option('feedburner',get_bloginfo('rss2_url')); ?>" />
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 
@@ -62,14 +63,14 @@ wp_head();
 
 	<div id='wrap_all'>
 
-	<?php 
+	<?php
 	if(!$blank) //blank templates dont display header nor footer
-	{ 
+	{
 		 //fetch the template file that holds the main menu, located in includes/helper-menu-main.php
          get_template_part( 'includes/helper', 'main-menu' );
 
 	} ?>
-	
+
 	<div id='main' data-scroll-offset='<?php echo avia_header_setting('header_scroll_offset'); ?>'>
 
 	<?php do_action('ava_after_main_container'); ?>

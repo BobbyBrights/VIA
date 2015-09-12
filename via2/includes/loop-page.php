@@ -37,7 +37,6 @@ if (have_posts()) :
                 do_action('ava_after_content', get_the_ID(), 'page');
                 ?>
 			</div>
-
 		</article><!--end post-entry-->
 
 
