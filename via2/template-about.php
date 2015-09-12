@@ -17,22 +17,22 @@ global $avia_config;
 
 		<div class='container_wrap container_wrap_first main_color <?php avia_layout_class( 'main' ); ?>'>
 
-			<div class='container'>
+			<div class='container' id="about">
 
 				<div class="two_col">
 					<div class="VIA_calendar">
 						<p class="VIA_calendar_title">Calendar</p>
 						<ul class="VIA_calendar_entries">
-						<?php 
+						<?php
 
 							$VIA_calendar_args = array( 'post_type' => 'post', 'category_name' => 'calendar', 'posts_per_page' => -1 );
 							$VIA_calendar_posts = get_posts( $VIA_calendar_args );
-						
-							foreach ( $VIA_calendar_posts as $post ) : setup_postdata( $post ); 
-								
+
+							foreach ( $VIA_calendar_posts as $post ) : setup_postdata( $post );
+
 								$event_date = new DateTime( get_field( 'event_date' ) );
-								$event_time = get_field( 'event_time' ); 
-								$event_location = get_field( 'event_location' ); 
+								$event_time = get_field( 'event_time' );
+								$event_location = get_field( 'event_location' );
 								$event_link = get_field( 'event_link' ); ?>
 							<li>
 								<span class="VIA_calendar_date"><?php echo $event_date->format('F j Y'); ?></span>
