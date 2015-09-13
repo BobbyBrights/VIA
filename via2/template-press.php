@@ -40,8 +40,8 @@ global $avia_config;
 						<?php else : ?>
 							<p class="post_title"><?php the_title(); ?></p>
 						<?php endif; ?>
-						<?php 
-							if ( in_category('tweet') || in_category('facebook-post') ) : 
+						<?php
+							if ( in_category('tweet') || in_category('facebook-post') ) :
 							$post_date = new DateTime( get_field('event_date') ); ?>
 							<?php the_content(); ?>
 							<p class="post_date"><?php echo $post_date->format('F j Y'); ?></p>
@@ -78,9 +78,10 @@ global $avia_config;
 							$('.blog_posts').before(
 								'<div class="main_post">' +
 								'<h1 class="post_title">' + postTitle + '</h1>' +
-								'<div class="post_meta">' + 
+								'<div class="post_meta">' +
 								'<span class="post_date">' + postDate + '</span>' +
-								'<span class="post_author">' + postAuthor + '</span>' + 
+								'<span> / by </span>' +
+								'<span class="post_author">' + postAuthor + '</span>' +
 								'</div>' +
 								'<div class="post_content">' + postContent + '</div>' +
 								'</div>'
