@@ -17,11 +17,11 @@ global $avia_config;
 
 		<div class='container_wrap container_wrap_first main_color <?php avia_layout_class( 'main' ); ?>'>
 
-			<div class='container'>
+			<div class='container' id="projects">
 
 				<main class='template-page content'>
 					<ul class="project-posts">
-				<?php 
+				<?php
 					$portfolio = new WP_Query('post_type=portfolio&posts_per_page=-1');
 
 						if ( $portfolio->have_posts() ) : while ( $portfolio->have_posts() ) : $portfolio->the_post(); ?>
