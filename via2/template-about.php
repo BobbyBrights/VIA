@@ -35,7 +35,7 @@ global $avia_config;
 								$event_location = get_field( 'event_location' );
 								$event_link = get_field( 'event_link' ); ?>
 							<li>
-								<span class="via_calendar_date"><?php echo $event_date->format('F j Y'); ?></span>
+								<span class="via_calendar_date"><?php echo $event_date->format('n/j/D'); ?></span>
 								<span class="via_calendar_time"><?php echo $event_time; ?></span>
 								<span class="via_calendar_title"><?php the_title(); ?></span>
 								<span class="via_calendar_location"><?php echo $event_location; ?></span>
