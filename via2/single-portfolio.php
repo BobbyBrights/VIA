@@ -10,7 +10,7 @@ global $avia_config;
  	 if( get_post_meta(get_the_ID(), 'header', true) != 'no') echo avia_title();
 	 ?>
 
-		<div class='container_wrap container_wrap_first main_color <?php avia_layout_class( 'main' ); ?>'>
+		<div class='container_wrap container_wrap_first main_color'>
 
 			<div class='container'>
 
@@ -28,14 +28,6 @@ global $avia_config;
 
                 <!--end content-->
 				</main>
-
-				<?php
-
-				//get the sidebar
-				$avia_config['currently_viewing'] = 'page';
-				get_sidebar();
-
-				?>
 
 			</div><!--end container-->
 
