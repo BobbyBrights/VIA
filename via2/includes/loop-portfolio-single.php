@@ -4,6 +4,8 @@ global $avia_config, $post_loop_count;
 $post_loop_count= 1;
 $post_class 	= "post-entry-".avia_get_the_id();
 
+
+
 // check if we got posts to display:
 if (have_posts()) :
 
@@ -21,7 +23,7 @@ if (have_posts()) :
 		$amazon_purchase_link = get_field('amazon_purchase_link'); // text input
 ?>
 
-		<article class='post-entry post-entry-type-page <?php echo $post_class; ?>' <?php avia_markup_helper(array('context' => 'entry')); ?>>
+		<div class='post-entry post-entry-type-page <?php echo $post_class; ?>' <?php avia_markup_helper(array('context' => 'entry')); ?>>
 
 			<div class="three_col entry-content-wrapper clearfix">
 				<div class="featured_wrapper">
@@ -33,12 +35,12 @@ if (have_posts()) :
 						<li class="aside_image"><img src="<?php echo $quaternary_image; // address semantic inconsistency ?>" /></li>
 					</ul>
 					<ul class="purchase_links">
-						<?php if ( $itunes_purchase_link ) : ?><li><a href="<?php $itunes_purchase_link; ?>">Purchase <!-- extract appropriate image from mockups --></a></li><?php endif; ?>
-						<?php if ( $amazon_purchase_link ) : ?><li><a href="<?php $amazon_purchase_link; ?>">Purchase <!-- extract appropriate image from mockups --></a></li><?php endif; ?>
+						<?php if ( $amazon_purchase_link ) : ?><li><a href="<?php echo $amazon_purchase_link; ?>" target="_blank"><img src="<?php bloginfo('url'); ?>/wp-content/themes/via2/images/layout/amazon_icon.png" alt="Amazon" /></a></li><?php endif; ?>
+						<?php if ( $itunes_purchase_link ) : ?><li><a href="<?php echo $itunes_purchase_link; ?>" target="_blank"><img src="<?php bloginfo('url'); ?>/wp-content/themes/via2/images/layout/itunes_icon.png" alt="iTunes" /></a></li><?php endif; ?>
 					</ul>
 				</div>
 				<div class="single_project_content">
-					<div class="single_project_title"><?php the_title(); ?></div>
+					<h1 class="single_project_title"><?php the_title(); ?></h1>
 					<?php the_content(); ?>
 				</div>
 			</div>
@@ -47,25 +49,25 @@ if (have_posts()) :
 			<div class="one_col single_sidebar">
 				<div class="aside_content">
 					<?php if ( $aside_content_image && !$aside_content_video ) :
-					
+
 							echo $aside_content_image;
 
 						elseif ( !$aside_content_image && $aside_content_video ) :
-					
+
 							echo $aside_content_video;
-					 
+
 						else :
 
 							echo $aside_content_video;
 
 					 	endif; ?>
 				</div>
-				<div class="press_highlites">
+				<div class="press_highlights">
 					<?php echo $press_highlights; ?>
 				</div>
 			</div>
-			<?php endif; ?>			
-		</article><!--end post-entry-->
+			<?php endif; ?>
+		</div><!--end post-entry-->
 
 
 <?php
@@ -95,7 +97,7 @@ if (have_posts()) :
 	$(function(){
 		var featuredImg = $('.single_project_featured_image'),
 			asideImg = $('.aside_image img');
-	
+
 		asideImg.on('click', function(){
 			console.log(asideImg + 'was clicked!')
 
