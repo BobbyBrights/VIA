@@ -4,53 +4,67 @@ global $avia_config, $post_loop_count;
 $post_loop_count= 1;
 $post_class 	= "post-entry-".avia_get_the_id();
 
-
-
 // check if we got posts to display:
 if (have_posts()) :
 
 	while (have_posts()) : the_post();
+
+		$secondary_image = get_field('secondary_image'); // file upload
+		$tertiary_image = get_field('tertiary_image'); // file upload
+		$quaternary_image = get_field('quaternary_image'); // file upload what is semantically correct here?
+
+		$aside_content_image = get_field('aside_content_image'); // file upload
+		$aside_content_video = get_field('aside_content_video'); // rich text editor for embed code
+		$press_highlights = get_field('press_highlights'); // rich text editor
+
+		$itunes_purchase_link = get_field('itunes_purchase_link'); // text input
+		$amazon_purchase_link = get_field('amazon_purchase_link'); // text input
 ?>
 
 		<article class='post-entry post-entry-type-page <?php echo $post_class; ?>' <?php avia_markup_helper(array('context' => 'entry')); ?>>
 
-			<div class="entry-content-wrapper clearfix">
-				<?php
-                echo '<header class="entry-content-header">';
-				$thumb = get_the_post_thumbnail(get_the_ID(), $avia_config['size']);
-
-				if($thumb) echo "<div class='page-thumb'>{$thumb}</div>";
-                echo '</header>';
-
-				//display the actual post content
-				echo '<div class="entry-content" '.avia_markup_helper(array('context' => 'entry_content','echo'=>false)).'>';
-				    the_content(__('Read more','avia_framework').'<span class="more-link-arrow">  &rarr;</span>');
-				echo '</div>';
-
-                echo '<footer class="entry-footer">';
-			
-				$avia_wp_link_pages_args = apply_filters('avf_wp_link_pages_args', array(
-																						'before' =>'<nav class="pagination_split_post">'.__('Pages:','avia_framework'),
-																	                    'after'  =>'</nav>',
-																	                    'pagelink' => '<span>%</span>',
-																	                    'separator'        => ' ',
-																	                    ));
-
-				wp_link_pages($avia_wp_link_pages_args);
-
-				if(has_tag() && is_single())
-				{
-					echo '<span class="blog-tags minor-meta">';
-					the_tags('<strong>'.__('Tags:','avia_framework').'</strong><span> ');
-					echo '</span></span>';
-				}
-                echo '</footer>';
-
-				?>
+			<div class="three_col entry-content-wrapper clearfix">
+				<div class="featured_wrapper">
+					<?php the_post_thumbnail( 'full', array( 'class' => 'single_project_featured_image') ); ?>
+					<ul class="aside_images"><!-- li items should have a fixed style to account for empty spaces -->
+						<li class="aside_image"><?php echo the_post_thumbnail( 'full' ); ?></li>
+						<li class="aside_image"><img src="<?php echo $secondary_image; ?>" /></li>
+						<li class="aside_image"><img src="<?php echo $tertiary_image; ?>" /></li>
+						<li class="aside_image"><img src="<?php echo $quaternary_image; // address semantic inconsistency ?>" /></li>
+					</ul>
+					<ul class="purchase_links">
+						<?php if ( $itunes_purchase_link ) : ?><li><a href="<?php $itunes_purchase_link; ?>">Purchase <!-- extract appropriate image from mockups --></a></li><?php endif; ?>
+						<?php if ( $amazon_purchase_link ) : ?><li><a href="<?php $amazon_purchase_link; ?>">Purchase <!-- extract appropriate image from mockups --></a></li><?php endif; ?>
+					</ul>
+				</div>
+				<div class="single_project_content">
+					<div class="single_project_title"><?php the_title(); ?></div>
+					<?php the_content(); ?>
+				</div>
 			</div>
-			
-			<?php do_action('ava_after_content', get_the_ID(), 'single-portfolio'); ?>
-			
+
+			<?php if ( $aside_content_image || $aside_content_video || $press_highlights ) : ?>
+			<div class="one_col single_sidebar">
+				<div class="aside_content">
+					<?php if ( $aside_content_image && !$aside_content_video ) :
+					
+							echo $aside_content_image;
+
+						elseif ( !$aside_content_image && $aside_content_video ) :
+					
+							echo $aside_content_video;
+					 
+						else :
+
+							echo $aside_content_video;
+
+					 	endif; ?>
+				</div>
+				<div class="press_highlites">
+					<?php echo $press_highlights; ?>
+				</div>
+			</div>
+			<?php endif; ?>			
 		</article><!--end post-entry-->
 
 
@@ -74,3 +88,34 @@ if (have_posts()) :
 
 	endif;
 ?>
+
+<script>
+	var $ = jQuery;
+
+	$(function(){
+		var featuredImg = $('.single_project_featured_image'),
+			asideImg = $('.aside_image img');
+	
+		asideImg.on('click', function(){
+			console.log(asideImg + 'was clicked!')
+
+			imgLink = $(this).attr('src');
+
+			featuredImg.attr('src', imgLink);
+		})
+
+		function iframeResponsive() {
+		    function setAspectRatio() {
+		      $('iframe').each(function() {
+		        $(this).css('height',$(this).width()*9/16)
+		      })
+		    }
+
+		    setAspectRatio()   
+		    $(window).resize(setAspectRatio)
+		}
+
+		iframeResponsive()
+	})
+
+</script>
