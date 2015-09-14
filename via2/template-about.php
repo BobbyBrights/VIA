@@ -20,7 +20,7 @@ global $avia_config;
 			<div class='container' id="about">
 
 				<div class="two_col">
-					<?php 
+					<?php
 						$via_calendar_args = array( 'post_type' => 'post', 'category_name' => 'calendar', 'posts_per_page' => -1 );
 						$via_calendar_posts = get_posts( $via_calendar_args );
 
@@ -68,7 +68,7 @@ global $avia_config;
 							<li class="social_bookmarks_instagram av-social-link-instagram social_icon_3">
 								<a target="_blank" href="http://instagram.com/visionintoart/" aria-hidden="true" data-av_icon="" data-av_iconfont="entypo-fontello" title="Instagram"><span class="avia_hidden_link_text">Instagram</span></a>
 							</li>
-						</ul>	
+						</ul>
 					</div>
 					<?php echo get_field('board_members_description'); ?>
 				</div>
@@ -86,14 +86,6 @@ global $avia_config;
 
 				<!--end content-->
 				</main>
-
-				<?php
-
-				//get the sidebar
-				$avia_config['currently_viewing'] = 'page';
-				get_sidebar();
-
-				?>
 
 			</div><!--end container-->
 
