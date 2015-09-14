@@ -55,7 +55,7 @@ if($headerS['header_topbar'] == true)
 
 						if(!empty($nav) || apply_filters('avf_execute_avia_meta_header', false))
 						{
-							echo "<nav class='sub_menu' ".avia_markup_helper(array('context' => 'nav', 'echo' => false)).">";
+							echo "<button id='nav_trigger'>Menu ≡</button><nav class='sub_menu' ".avia_markup_helper(array('context' => 'nav', 'echo' => false)).">";
 							echo $nav;
 		                    do_action('avia_meta_header'); // Hook that can be used for plugins and theme extensions (currently: the wpml language selector)
 							echo '</nav>';
@@ -113,7 +113,7 @@ if($headerS['header_topbar'] == true)
 
 						    echo $extraClose;
 						    /* echo "<button data-av_icon='' data-av_iconfont='entypo-fontello'>Menu</button>"; */
-						    echo "<nav class='main_menu' data-selectname='".__('Select a page','avia_framework')."' ".avia_markup_helper(array('context' => 'nav', 'echo' => false)).">";
+						    echo "<nav class='main_menu' data-selectname='".__('Select a page','avia_framework')."' ".avia_markup_helper(array('context' => 'nav', 'echo' => false))."><button id='nav_trigger'>Menu <span class='icon'>≡</span></button>";
 						        $avia_theme_location = 'avia';
 						        $avia_menu_class = $avia_theme_location . '-menu';
 						        $args = array(
@@ -144,6 +144,15 @@ if($headerS['header_topbar'] == true)
 		</div>
 
 		<div class='header_bg'></div>
+		
+		<script>
+		 	var $ = jQuery;
 
+		 	$(function(){
+		 		$('#nav_trigger').on('click',function(){
+		 			$('.avia-menu.av-main-nav-wrap').toggle()
+		 		})
+		 	})
+		</script>
 <!-- end header -->
 </header>
