@@ -576,6 +576,8 @@ body #wrap_all #main .container_wrap .container .one_col ul.featured_social li *
 	padding: 20px;
 	background-color: #F2F2F2;
 	margin-bottom: 20px;
+	max-height: 450px;
+    overflow-x: scroll;
 }
 
 #about .two_col .via_calendar .via_calendar_header,
@@ -957,6 +959,62 @@ body.page-template-template-ferus-php #wrap_all #header .header_bg,
 /* ===============
 	Press > Post Stream
 ===============*/
+
+#press .one_col h1, #press .one_col .press_downloads {
+	float:left;
+}
+
+#press .one_col .press_downloads {
+	float: left;
+    margin-left: 20px;
+    height: 40px;
+}  
+
+#press #press_downloads {
+    height: 100%;
+    background: #eee;
+    border: 0;
+    padding: 5px 15px;
+    cursor: pointer;
+}
+
+#press #press_downloads img {
+	height: 90%;
+    vertical-align: middle;
+}
+
+#press #press_downloads:focus, #press #press_downloads:active {
+	outline:0;
+}
+
+#press .download_links {
+	display:none;
+	margin:0;
+	padding:15px 15px 15px 0;
+	background:#eee;
+	position:absolute;
+	z-index:5;
+}
+
+#press .download_links a, #press .download_links a:visited {
+	color:#888;
+}
+
+#press .download_links li { 
+	padding:0 12px;
+}
+
+#press .download_links li:first-child {
+	margin-bottom:20px;
+}
+
+#press .download_links li img { 
+	height:15px;
+	width:auto;
+	vertical-align:middle;
+	margin-right:10px;
+}
+
 
 #press .three_col {
 	border-left: 1px solid #DCDCDC;
