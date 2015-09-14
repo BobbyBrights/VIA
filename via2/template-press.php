@@ -20,7 +20,23 @@ global $avia_config;
 			<div class='container' id="press">
 
 				<div class="one_col">
-					<h1>Press</h1>
+					<div class="press_title">
+						<h1>Press</h1>
+						<?php 
+							$press_kit = get_field('press_kit');
+							$hr_photos = get_field('hr_photos');
+							
+							if ( $press_kit || $hr_photos ) : ?>
+						<div class="press_downloads">
+							<button id="press_downloads"><img src="<?php bloginfo('url'); ?>/wp-content/themes/via2/images/layout/grip_icon.png" alt="Press Downloads"></button>
+							<ul class="download_links">
+								<?php if ( $press_kit ) : ?><li><a href="<?php echo $press_kit; ?>" target="_blank"><img src="<?php bloginfo('url'); ?>/wp-content/themes/via2/images/layout/down_arrow.png" alt="Press Kit" />Press Kit</a></li><?php endif; ?>
+								<?php if ( $hr_photos ) : ?><li><a href="<?php echo $hr_photos; ?>" target="_blank"><img src="<?php bloginfo('url'); ?>/wp-content/themes/via2/images/layout/down_arrow.png" alt="HR Photos" />HR Photos</a></li><?php endif; ?>
+							</ul>						
+						</div>
+						<?php endif; ?> 
+						<div class="clear"></div>						
+					</div>
 					<?php echo get_field('press_highlights'); ?>
 				</div>
 				<main class='three_col template-page content'>
@@ -63,6 +79,10 @@ global $avia_config;
 			<script>
 				$ = jQuery
 				$(function(e){
+					$('#press_downloads').on('click', function(){
+						$('.download_links').toggle()
+					})
+
 					$('.trigger').on('click', function(e){
 						var postTitle = $(this).parent().parent().find('.post_title').text(),
 							postDate = $(this).parent().parent().find('.post_date').text(),

@@ -45,7 +45,19 @@ global $avia_config;
 					<?php dynamic_sidebar('homepage'); ?>
 					<ul class="featured_release">
 					<?php
-						$portfolio = new WP_Query('post_type=portfolio&posts_per_page=1');
+						$portfolio_args = array( 
+							'post_type' => 'portfolio', 
+							'tax_query' => array(
+									array(
+										'taxonomy' => 'portfolio_entries',
+										'field' => 'slug',
+										'terms' => 'featured-release'
+									),
+								),
+							'posts_per_page' => 1 
+
+						);
+						$portfolio = new WP_Query( $portfolio_args );
 
 						if ( $portfolio->have_posts() ) : while ( $portfolio->have_posts() ) : $portfolio->the_post(); ?>
 						<li>
