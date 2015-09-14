@@ -80,7 +80,7 @@ body {
 
 body #wrap_all {
 	margin: 20px 20px 40px 20px;
-	border: solid 15px black;
+	border: solid 10px black;
 	border-bottom-width: 0;
 	width: initial;
 	background-color: transparent;
@@ -147,7 +147,7 @@ body #wrap_all header#header #header_meta .container form div input {
 body #wrap_all header#header #header_meta .container form div input[type=submit] {
 	color: black;
 	float: left;
-	background-color: white;
+	background-color: transparent;
 	-webkit-transform: rotateY(180deg);
 	-ms-transform: rotateY(180deg);
 	-o-transform: rotateY(180deg);
@@ -271,9 +271,14 @@ ul.social_bookmarks li a {
 	width: 75% !important;
 }
 
+.four_col {
+	width: 100% !important;
+}
+
 .one_col,
 .two_col,
-.three_col {
+.three_col,
+.four_col {
 	clear: none !important;
 }
 
@@ -629,12 +634,78 @@ body #wrap_all #main .container_wrap .container .one_col ul.featured_social li *
 	display: inline-block;
 }
 
-#about .one_col .post-entry .entry-content-wrapper .entry-content .flex_column .av_textblock_section .avia_textblock h4 {
+#about .one_col .post-entry .entry-content-wrapper .e.ntry-content .flex_column .av_textblock_section .avia_textblock h4 {
 	display: none;
 }
 
 #about .one_col .post-entry .entry-content-wrapper .entry-content .flex_column .av_textblock_section .avia_textblock {
 	line-height: 1.4;
+}
+
+
+/* ===============
+	Projects CSS
+===============*/
+
+#projects .four_col {
+	padding: 0 !important;
+}
+
+#projects .four_col ul.project-posts {
+	width: 100%;
+	margin: 0;
+}
+
+#projects .four_col ul.project-posts li {
+	width: 20%;
+	padding: 0 10px;
+	margin-bottom: 20px;
+	float: left;
+}
+
+#projects .four_col ul.project-posts li a {
+    width: 100%;
+    height: 0;
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 100%;
+    display: block;
+    background-color: #F2F2F2;
+}
+
+#projects .four_col ul.project-posts li a .image img {
+	float: left;
+}
+
+#projects .four_col ul.project-posts li a p {
+	display: none;
+	position: absolute;
+	height: 100%;
+	margin: 0;
+	width: 100%;
+	color: white;
+	background-color: black;
+	font-size: 1.9em;
+	padding: 20px;
+	line-height: 1;
+	word-break: break-word;
+}
+
+#projects .four_col ul.project-posts li:hover a p {
+	display: block;
+}
+
+/* ===============
+	FERUS CSS
+===============*/
+
+body.home,
+body.home #wrap_all #header .header_bg,
+body.home #wrap_all #main .container_wrap .container,
+body.home #wrap_all #main .container_wrap .container,
+body.home #wrap_all #main .container_wrap .container .template-page article .entry-content-wrapper .entry-content .flex_column .grid-sort-container div.grid-entry article.inner-entry .grid-content,
+body.home #wrap_all #main .container_wrap .container .template-page article .entry-content-wrapper .entry-content .flex_column .grid-sort-container div.grid-entry article.inner-entry .grid-content header h3 {
+	background-color: transparent;
 }
 
 
@@ -706,6 +777,8 @@ body #wrap_all #main .container_wrap .container .one_col ul.featured_social li *
 #press .three_col ul.blog_posts li p.post_title {
 	font-weight: bold;
 	font-size: 1.4em;
+	float: left;
+	width: 100%;
 }
 
 #press .three_col ul.blog_posts li.facebook p.post_title,
@@ -725,6 +798,7 @@ body #wrap_all #main .container_wrap .container .one_col ul.featured_social li *
 #press .three_col ul.blog_posts li img {
 	margin-top: -1px;
 	width: 100%;
+	float: left;
 }
 
 #press .three_col ul.blog_posts li p.read-more button {
@@ -775,4 +849,96 @@ Mobile Styles
 @media only screen and (max-width: 767px) {
   /* Add your Mobile Styles here */
 
+	.one_col,
+	.two_col,
+	.three_col,
+	.four_col {
+		width: 100% !important;
+	}
+
+	body #wrap_all #main .container_wrap .container .template-page article .entry-content-wrapper .entry-content .flex_column .grid-sort-container div.grid-entry:nth-of-type(1) article.inner-entry .grid-image {
+		height: initial !important;
+	}
+
+	body #wrap_all #main .container_wrap .container .template-page article .entry-content-wrapper .entry-content .flex_column .grid-sort-container div.grid-entry:nth-of-type(1) article.inner-entry .grid-image img {
+		width: 100% !important;
+	}
+
+	body #wrap_all #main .container_wrap .container .template-page article .entry-content-wrapper .entry-content .flex_column .grid-sort-container div.grid-entry:nth-of-type(2),
+	body #wrap_all #main .container_wrap .container .template-page article .entry-content-wrapper .entry-content .flex_column .grid-sort-container div.grid-entry:nth-of-type(3) {
+		width: 100% !important;
+	}
+
+	body #wrap_all header#header #header_meta {
+		width: 100% !important;
+	}
+
+	body #wrap_all header#header #header_meta .container {
+		width: 100%;
+		padding: 0 0 0 20px;
+	}
+
+	body #wrap_all header#header #header_meta .container .social_bookmarks {
+		width: auto;
+	}
+
+	body #wrap_all header#header #header_meta .container .social_bookmarks li {
+		float: left;
+	}
+
+	body #wrap_all header#header #header_meta .container form {
+		float: right;
+	}
+
+	body #wrap_all header#header #header_main,
+	body #wrap_all header#header #header_main .container  {
+		width: 100%;
+	}
+
+	body #wrap_all header#header #header_main .container strong.logo {
+		width: 100%;
+		margin: 0;
+	}
+
+	body #wrap_all header#header #header_main .container strong.logo img {
+		margin: auto;
+	}
+
+	#about .one_col {
+		margin-top: 40px;
+	}
+
+	#about .one_col .post-entry .entry-content-wrapper .entry-content .flex_column .av_textblock_section:first-of-type {
+		height: 0;
+		padding-bottom: 40%;
+	}
+
+	#about .one_col .post-entry .entry-content-wrapper .entry-content .flex_column .av_textblock_section:first-of-type h4 {
+		display: none;
+	}
+
+	#projects .four_col ul.project-posts li {
+		width: 100%;
+	}
+
+	#press .three_col {
+		border-left: none;
+	}
+
+	#press .three_col .main_post {
+		margin-top: 40px;
+		padding: 0;
+	}
+
+	#press .three_col .main_post .post_content {
+		border-bottom: none;
+	}
+
+	#press .three_col ul.blog_posts {
+		-webkit-columns: initial;
+		-moz-columns: initial;
+		-o-columns: initial;
+		columns: initial;
+		padding: 0;
+	}
 }
