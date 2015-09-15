@@ -21,7 +21,7 @@ global $avia_config;
 
 				<div class="two_col">
 					<?php
-						$via_calendar_args = array( 'post_type' => 'post', 'category_name' => 'calendar', 'posts_per_page' => -1 );
+						$via_calendar_args = array( 'post_type' => 'post', 'category_name' => 'calendar', 'order' => 'DESC', 'orderby' => 'meta_value', 'meta_key' => 'event_date', 'posts_per_page' => -1 );
 						$via_calendar_posts = get_posts( $via_calendar_args );
 
 						if ( $via_calendar_posts ) : ?>
@@ -35,7 +35,7 @@ global $avia_config;
 								$event_location = get_field( 'event_location' );
 								$event_link = get_field( 'event_link' ); ?>
 							<li>
-								<span class="via_calendar_date"><?php echo $event_date->format('F j Y'); ?></span>
+								<span class="via_calendar_date"><?php echo $event_date->format('n/j/D'); ?></span>
 								<span class="via_calendar_time"><?php echo $event_time; ?></span>
 								<span class="via_calendar_title"><?php the_title(); ?></span>
 								<span class="via_calendar_location"><?php echo $event_location; ?></span>

@@ -10,7 +10,7 @@ global $avia_config;
    if( get_post_meta(get_the_ID(), 'header', true) != 'no') echo avia_title();
    ?>
 
-    <div class='container_wrap container_wrap_first main_color <?php avia_layout_class( 'main' ); ?>'>
+<div class='container_wrap container_wrap_first main_color'>
 
       <div class='container' id="single">
 
@@ -31,8 +31,6 @@ global $avia_config;
 
       </div><!--end container-->
 
-    </div><!-- close default .container_wrap element -->
-
-
+</div><!--end container wrap-->
 
 <?php get_footer(); ?>

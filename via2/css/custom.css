@@ -242,6 +242,7 @@ body #wrap_all header#header #header_meta .container #searchform div.ajax_search
 	clear: both;
 }
 
+
 body #wrap_all header#header #header_meta .container #searchform div.ajax_search_response button {
 	background: transparent;
 	border: none;
@@ -305,6 +306,7 @@ body #wrap_all header#header #header_meta .container #searchform div input[type=
 	padding: 0 11px;
 	width: 260px;
 }
+
 
 
 /* ===============
@@ -1128,6 +1130,124 @@ body #wrap_all #main .container_wrap .container .one_col ul.featured_social li *
 #single .content .post-entry .records_sidebar p.cat_number,
 #single .content .post-entry .records_sidebar p.release_date {
 	font-weight: bold;
+}
+
+
+/* ===============
+	Single Project CSS
+===============*/
+
+#single .content {
+	width: 100%;
+}
+
+#single .content .post-entry .one_col,
+#single .content .post-entry .three_col {
+	float: left;
+}
+
+
+/* ===============
+	Single Project > Content
+===============*/
+
+#single .content .post-entry .three_col {
+	padding: 0 10px 0 0;
+}
+
+#single .content .post-entry .three_col .featured_wrapper {
+	display: inline-block;
+	background-color: black;
+	float: left;
+	position: relative;
+}
+
+#single .content .post-entry .three_col .featured_wrapper .single_project_featured_image {
+	width: 79.1%;
+	float: left;
+}
+
+#single .content .post-entry .three_col .featured_wrapper .aside_images {
+	width: 20.9%;
+	list-style-type: none;
+	margin: 0;
+	float: left;
+	padding: 10px 20px;
+}
+
+#single .content .post-entry .three_col .featured_wrapper .aside_images .aside_image {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 0;
+	padding-bottom: 100%;
+	margin: 10px 0;
+	display: inline-block;
+	background: #F2F2F2;
+}
+
+#single .content .post-entry .three_col .featured_wrapper .aside_images .aside_image img {
+	float: left;
+	cursor: pointer;
+}
+
+#single .content .post-entry .three_col .featured_wrapper .purchase_links {
+	background: #f2f2f2;
+    width: 80px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+#single .content .post-entry .three_col .featured_wrapper .purchase_links li {
+	width:80px;
+	height:80px;
+	margin:0;
+	padding:20px;
+	border-top:2px solid #000;
+}
+
+#single .content .post-entry .three_col .featured_wrapper .purchase_links li:first-child {
+	border-top:0;
+}
+
+#single .content .post-entry .three_col .featured_wrapper .purchase_links li img {
+	height:100%;
+	display:block;
+	margin:auto;
+}
+
+#single .content .post-entry .three_col .single_project_content {
+	float: left;
+	margin: 20px 0 0 0;
+}
+
+
+/* ===============
+	Single Project > Sidebar
+===============*/
+
+#single .content .post-entry .one_col {
+	padding: 0 0 0 10px;
+}
+
+#single .content .post-entry .one_col .aside_content {
+	padding-bottom: 80px;
+	display: inline-block;
+	border-bottom: 1px solid black;
+	float: left;
+}
+
+#single .content .post-entry .one_col .aside_content iframe {
+	float: left;
+}
+
+#single .content .post-entry .one_col .press_highlights {
+	margin-top: 20px;
+	float: left;
 }
 
 
