@@ -144,6 +144,7 @@ if($headerS['header_topbar'] == true)
 		</div>
 
 		<div class='header_bg'></div>
+
 		<script>
 		 	var $ = jQuery;
 		 	$(function(){
@@ -154,6 +155,7 @@ if($headerS['header_topbar'] == true)
 					$(this).parent().remove()
 				})
 			})
+
 		</script>
 <!-- end header -->
 </header>
