@@ -4,7 +4,7 @@
  * The function within this file are theme specific:
  * they are used only by this theme and not by the Avia Framework in general
  */
- 
+
 
 
 /* wrap embeds into a proportion containing div */
@@ -57,9 +57,9 @@ if(!function_exists('avia_append_search_nav'))
 	add_filter( 'avf_fallback_menu_items', 'avia_append_search_nav', 10, 2 );
 
 	function avia_append_search_nav ( $items, $args )
-	{	
+	{
 		if(avia_get_option('header_searchicon','header_searchicon') != "header_searchicon") return $items;
-	
+
 	    if ((is_object($args) && $args->theme_location == 'avia') || (is_string($args) && $args = "fallback_menu"))
 	    {
 	        global $avia_config;
@@ -87,11 +87,11 @@ if(!function_exists('avia_ajax_search'))
 	function avia_ajax_search()
 	{
 	    global $avia_config;
-		
+
 	    unset($_REQUEST['action']);
 	    if(empty($_REQUEST['s'])) $_REQUEST['s'] = array_shift(array_values($_REQUEST));
 		if(empty($_REQUEST['s'])) die();
-		
+
 
 	    $defaults = array('numberposts' => 5, 'post_type' => 'any', 'post_status' => 'publish', 'post_password' => '', 'suppress_filters' => false);
 	    $_REQUEST['s'] = apply_filters( 'get_search_query', $_REQUEST['s']);
@@ -100,7 +100,7 @@ if(!function_exists('avia_ajax_search'))
 	    $search_query 		= apply_filters('avf_ajax_search_query', http_build_query($search_parameters));
 	    $query_function     = apply_filters('avf_ajax_search_function', 'get_posts', $search_query, $search_parameters, $defaults);
 	    $posts		= (($query_function == 'get_posts') || !function_exists($query_function))  ? get_posts($search_query) : $query_function($search_query, $search_parameters, $defaults);
-	
+
 	    $search_messages = array(
 	            'no_criteria_matched' => __("Sorry, no posts matched your criteria", 'avia_framework'),
 	            'another_search_term' => __("Please try another search term", 'avia_framework'),
@@ -108,12 +108,13 @@ if(!function_exists('avia_ajax_search'))
 	            'all_results_link'    => http_build_query($_REQUEST),
 	            'view_all_results'    => __('View all results','avia_framework')
             );
-		
+
 	    $search_messages = apply_filters('avf_ajax_search_messages', $search_messages, $search_query);
-		
+
 	    if(empty($posts))
 	    {
 	        $output  = "<span class='ajax_search_entry ajax_not_found'>";
+	        $output  = "<span id='close_ajax'>close</span>";
 	        $output .= "<span class='ajax_search_image ".av_icon_string('info')."'>";
 	        $output .= "</span>";
 	        $output .= "<span class='ajax_search_content'>";
@@ -131,6 +132,7 @@ if(!function_exists('avia_ajax_search'))
 
 	    //if we got posts resort them by post type
 	    $output = "";
+	    $output .= "<span id='close_ajax'>close</span>";
 	    $sorted = array();
 	    $post_type_obj = array();
 	    foreach($posts as $post)
@@ -264,10 +266,10 @@ if(!function_exists('avia_title'))
 		global $avia_config;
 
 		if(!$id) $id = avia_get_the_id();
-		
+
 		$header_settings = avia_header_setting();
 		if($header_settings['header_title_bar'] == 'hidden_title_bar') return "";
-		
+
 		$defaults 	 = array(
 
 			'title' 		=> get_the_title($id),
@@ -291,7 +293,7 @@ if(!function_exists('avia_title'))
 		{
 			$defaults['link'] = "";
 		}
-		
+
 		//disable breadcrumb if requested
 		if($header_settings['header_title_bar'] == 'title_bar') $defaults['breadcrumb'] = false;
 
@@ -338,9 +340,9 @@ if(!function_exists('avia_post_nav'))
 	        $settings['same_category'] = $same_category;
 	        $settings['excluded_terms'] = '';
 		$settings['wpversion'] = $wp_version;
-        
-		//dont display if a fullscreen slider is available since they overlap 
-		if((class_exists('avia_sc_layerslider') && !empty(avia_sc_layerslider::$slide_count)) || 
+
+		//dont display if a fullscreen slider is available since they overlap
+		if((class_exists('avia_sc_layerslider') && !empty(avia_sc_layerslider::$slide_count)) ||
 			class_exists('avia_sc_slider_full') && !empty(avia_sc_slider_full::$slide_count) ) $settings['is_fullwidth'] = true;
 
 		$settings['type'] = get_post_type();
@@ -351,7 +353,7 @@ if(!function_exists('avia_post_nav'))
 
 	        $settings = apply_filters('avia_post_nav_settings', $settings);
 	        if(!empty($settings['is_bbpress']) || !empty($settings['is_hierarchical']) || !empty($settings['is_fullwidth'])) return;
-	
+
 	        if(version_compare($settings['wpversion'], '3.8', '>=' ))
 	        {
 	            $entries['prev'] = get_previous_post($settings['same_category'], $settings['excluded_terms'], $settings['taxonomy']);
@@ -362,7 +364,7 @@ if(!function_exists('avia_post_nav'))
 	            $entries['prev'] = get_previous_post($settings['same_category']);
 	            $entries['next'] = get_next_post($settings['same_category']);
 	        }
-	        
+
 		$entries = apply_filters('avia_post_nav_entries', $entries, $settings);
         	$output = "";
 
@@ -455,14 +457,14 @@ if(!function_exists('avia_ampersand'))
 		//ampersands
 		$content = str_replace(" &amp; "," <span class='special_amp'>&amp;</span> ",$content);
 		$content = str_replace(" &#038; "," <span class='special_amp'>&amp;</span> ",$content);
-	
-		
+
+
 		// quotes
 		$content = str_replace("“","<span class='special_amp'>“</span>",$content); // left double quotation mark “
 		$content = str_replace("”","<span class='special_amp'>”</span>",$content); // right double quotation mark ”
 		$content = str_replace("„","<span class='special_amp'>„</span>",$content); // double low-9 quotation mark „
-		
-		
+
+
 		$content = str_replace("&#8220;","<span class='special_amp'>&#8220;</span>",$content); // left double quotation mark “
 		$content = str_replace("&#8221;","<span class='special_amp'>&#8221;</span>",$content); // right double quotation mark ”
 		$content = str_replace("&#8222;","<span class='special_amp'>&#8222;</span>",$content); // double low-9 quotation mark „
@@ -561,7 +563,7 @@ var _gaq = _gaq || []; _gaq.push(['_setAccount', '".$avia_config['analytics_code
 
 ";
 		}
-		
+
 		add_action('wp_footer', 'avia_print_tracking_code');
 	}
 
@@ -590,16 +592,16 @@ if(!function_exists('avia_header_setting'))
 		global $avia_config;
 		if(isset($avia_config['header_settings']) && $single_val && isset($avia_config['header_settings'][$single_val])) return $avia_config['header_settings'][$single_val];
 		if(isset($avia_config['header_settings']) && !$single_val) return $avia_config['header_settings']; //return cached header setting if available
-		
+
 		$defaults = array(  'header_position' => 'header_top', // currently no option in the backend.
-							'header_layout'=>'logo_left menu_right', 
-							'header_size'=>'slim', 
-							'header_custom_size'=>'', 
-							'header_sticky'=>'header_sticky', 
-							'header_shrinking'=>'header_shrinking', 
+							'header_layout'=>'logo_left menu_right',
+							'header_size'=>'slim',
+							'header_custom_size'=>'',
+							'header_sticky'=>'header_sticky',
+							'header_shrinking'=>'header_shrinking',
 							'header_title_bar'=>'',
-							'header_social'=>'', 
-							'header_secondary_menu'=>'', 
+							'header_social'=>'',
+							'header_secondary_menu'=>'',
 							'header_stretch'=>'',
 							'header_custom_size'=>'',
 							'header_phone_active'=>'',
@@ -609,29 +611,29 @@ if(!function_exists('avia_header_setting'))
 							'header_mobile_activation' => 'mobile_menu_phone',
 							'phone'=>'',
 						  );
-							
+
 		$settings = avia_get_option();
-		
+
 		//overwrite with custom fields if they are set
 		$post_id = avia_get_the_id();
 		if($post_id && is_singular())
-		{	
+		{
 			$custom_fields = get_post_custom($post_id);
-			
+
 			foreach($defaults as $key =>$default)
 			{
-				if(!empty($custom_fields[$key]) && !empty($custom_fields[$key][0]) ) 
+				if(!empty($custom_fields[$key]) && !empty($custom_fields[$key][0]) )
 				{
 					$settings[$key] = $custom_fields[$key][0];
 				}
 			}
-			
+
 			//check if header transparency is set to true
 			$transparency = get_post_meta($post_id, 'header_transparency', true);
 		}
-		
+
 		$header = shortcode_atts($defaults, $settings);
-		
+
 		//#main data attribute used to calculate scroll offset
 		switch($header['header_size'])
 		{
@@ -639,21 +641,21 @@ if(!function_exists('avia_header_setting'))
 			case 'custom': 	$header['header_scroll_offset'] = $header['header_custom_size']; break;
 			default : 		$header['header_scroll_offset'] = 88; break;
 		}
-		
+
 		//set header transparency
 		$header['header_transparency'] = "";
 		if(!empty($transparency)) $header['header_transparency'] = 'header_transparency';
-		
+
 		//deactivate title bar if header is transparent
 		if(!empty($transparency)) $header['header_title_bar'] = 'hidden_title_bar';
-		
-		
+
+
 		//sticky and shrinking are tied together
 		if($header['header_sticky'] == 'disabled') { $header['header_shrinking'] = 'disabled'; $header['header_scroll_offset'] =  0; }
-		
+
 		//if the custom height is less than 70 shrinking doesnt really work
 		if($header['header_size'] == 'custom' && (int) $header['header_custom_size'] < 65) $header['header_shrinking'] = 'disabled';
-		
+
 		//create a header class so we can style properly
 		$header_class_var = array('header_position', 'header_layout', 'header_size', 'header_sticky', 'header_shrinking', 'header_stretch', 'header_mobile_activation', 'header_transparency');
 		$header['header_class'] = "";
@@ -665,25 +667,25 @@ if(!function_exists('avia_header_setting'))
 				$header['header_class'] .= " av_".str_replace(' ',' av_',$header[$class_name]);
 			}
 		}
-		
+
 		//set manual flag if we should display the top bar
 		$header['header_topbar'] = false;
 		if(strpos($header['header_social'], 'extra_header_active') !== false || strpos($header['header_secondary_menu'], 'extra_header_active') !== false || !empty($header['header_phone_active'])){ $header['header_topbar'] = 'header_topbar_active'; }
-		
+
 		//set manual flag if the menu is at the bottom
 		$header['bottom_menu'] = false;
 		if(strpos($header['header_layout'],'bottom_nav_header') !== false) $header['bottom_menu'] = 'header_bottom_menu_active';
-		
+
 		//header class that tells us to use the alternate logo
 		if(!empty($header['header_replacement_logo'])) $header['header_class'] .= " av_alternate_logo_active";
-		
+
 		$header = apply_filters('avf_header_setting_filter', $header);
 
 		//make settings available globaly
 		$avia_config['header_settings'] = $header;
-		
+
 		if(!empty($single_val) && isset($header[$single_val])) return $header[$single_val];
-		
+
 		return $header;
 	}
 }
@@ -693,13 +695,13 @@ if(!function_exists('avia_header_setting'))
 if(!function_exists('avia_header_class_string'))
 {
 	function avia_header_class_string($necessary = array() , $prefix = "html_"){
-		
-		if(empty($necessary)) $necessary = array(	'header_position', 
-													'header_layout', 
-													'header_size', 
+
+		if(empty($necessary)) $necessary = array(	'header_position',
+													'header_layout',
+													'header_size',
 													'header_sticky',
-													'header_shrinking', 
-													'header_topbar', 
+													'header_shrinking',
+													'header_topbar',
 													'header_transparency',
 													'header_mobile_activation',
 													'header_mobile_behavior'
@@ -708,7 +710,7 @@ if(!function_exists('avia_header_class_string'))
 		$settings  	= avia_header_setting();
 		$class		= array();
 		$post_id 	= function_exists('avia_get_the_id') ? avia_get_the_id() : get_the_ID();
-		
+
 		foreach($necessary as $class_name)
 		{
 			if(!empty($settings[$class_name]))
@@ -717,16 +719,16 @@ if(!function_exists('avia_header_class_string'))
 				$class = array_merge($class, $result);
 			}
 		}
-		
+
 		if($post_id) $class[] = "entry_id_".$post_id;
-		
+
 		if(!empty($class))
 		{
 			$class = array_unique($class);
 			$class = " ".$prefix.implode(" ".$prefix, $class);
 		}
 
-		
+
 		return $class;
 	}
 }
@@ -736,21 +738,21 @@ if(!function_exists('avia_header_class_string'))
 if(!function_exists('avia_blog_class_string'))
 {
 	function avia_blog_class_string($necessary = array() , $prefix = "av-"){
-		
-		if(empty($necessary)) $necessary = array(	'blog-meta-author', 
-													'blog-meta-comments', 
-													'blog-meta-category', 
+
+		if(empty($necessary)) $necessary = array(	'blog-meta-author',
+													'blog-meta-comments',
+													'blog-meta-category',
 													'blog-meta-date',
-													'blog-meta-html-info', 
+													'blog-meta-html-info',
 												);
 		$class		= array();
 		$settings  	= avia_get_option();
-	
+
 		foreach($necessary as $class_name)
 		{
 			if(isset($settings[$class_name]) && $settings[$class_name] == "disabled") $class[] = $class_name."-disabled";
 		}
-		
+
 		if(empty($class)) $class = "";
 		if(!empty($class))
 		{
@@ -764,7 +766,7 @@ if(!function_exists('avia_blog_class_string'))
 				$class = "";
 			}
 		}
-		
+
 
 		return $class;
 	}
@@ -777,13 +779,13 @@ if(!function_exists('avia_header_html_custom_height'))
 	function avia_header_html_custom_height()
 	{
 		$settings = avia_header_setting();
-		
+
 		if($settings['header_size'] == "custom")
 		{
 			$size = $settings['header_custom_size'];
 			$bottom_bar = $settings['bottom_menu'] == true ? 36 : 0;
 			$top_bar	= $settings['header_topbar'] == true ? 30 : 0;
-			
+
 			$html =  "";
 			$html .= "\n<style type='text/css' media='screen'>\n";
 			$html .= "	#header_main .container, .main_menu ul:first-child > li a{ height:{$size}px; line-height: {$size}px; }\n";
@@ -791,11 +793,11 @@ if(!function_exists('avia_header_html_custom_height'))
 			$html .= "</style>\n";
 			echo $html;
 		}
-		
+
 	}
 
 	add_action('wp_head', 'avia_header_html_custom_height');
-	
+
 }
 
 
@@ -810,8 +812,8 @@ if(!function_exists('avia_sidebar_menu'))
         $sidebar_menu = "";
 
         $subNav = avia_get_option('page_nesting_nav');
-  
-        
+
+
         $the_id = @get_the_ID();
         $args 	= array();
 		global $post;
@@ -939,47 +941,47 @@ if(!function_exists('avia_add_compat_header'))
 }
 
 
-/* 
-Add a checkbox to the featured image metabox 
+/*
+Add a checkbox to the featured image metabox
 */
 if(!function_exists('avia_theme_featured_image_meta'))
 {
 	add_filter( 'admin_post_thumbnail_html', 'avia_theme_featured_image_meta');
-	
-	function avia_theme_featured_image_meta( $content ) 
+
+	function avia_theme_featured_image_meta( $content )
 	{
 		global $post, $post_type;
-	
+
 		if($post_type == "post")
 		{
 		    $text = __( "Don't display image on single post", 'avia_framework' );
 		    $id = '_avia_hide_featured_image';
 		    $value = esc_attr( get_post_meta( $post->ID, $id, true ) );
 		    $selected = !empty($value) ? "checked='checked'" : "";
-		    
+
 		    $label = '<label for="' . $id . '" class="selectit"><input '.$selected.' name="' . $id . '" type="checkbox" id="' . $id . '" value="1" > ' . $text .'</label>';
 		    return $content .= $label;
 		}
-		
+
 		return $content;
 	}
 }
 
-/* 
-Make sure the checkbox above is saved properly 
+/*
+Make sure the checkbox above is saved properly
 */
 if(!function_exists('avia_add_feature_image_checkbox'))
-{	
+{
 	add_filter( 'avf_builder_elements', 'avia_add_feature_image_checkbox');
 
 	function avia_add_feature_image_checkbox($elements)
-	{	
+	{
 			$elements[] =  array(
 		        "slug"  => "layout",
 		        "id"    => "_avia_hide_featured_image",
 		        "type"  => "fake",
 		    );
-	   
+
 		return $elements;
 	}
 }
@@ -997,7 +999,7 @@ function that saves the style options array into an external css file rather tha
 if(!function_exists('avia_generate_stylesheet'))
 {
 	add_action('avia_ajax_after_save_options_page', 'avia_generate_stylesheet', 30, 1);
-	
+
 	function avia_generate_stylesheet($options)
 	{
 		global $avia;

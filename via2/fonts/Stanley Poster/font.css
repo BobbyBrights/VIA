@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'Stanley-Poster';
+  src: url('Stanley-Poster.eot');
+  src: url('Stanley-Poster.eot?#iefix') format('embedded-opentype'),
+       url('Stanley-Poster.woff2') format('woff2'),
+       url('Stanley-Poster.woff') format('woff'),
+       url('Stanley-Poster.ttf') format('truetype'),
+       url('Stanley-Poster.svg#Stanley-Poster') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
