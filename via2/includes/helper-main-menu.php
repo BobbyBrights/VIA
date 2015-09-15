@@ -144,15 +144,18 @@ if($headerS['header_topbar'] == true)
 		</div>
 
 		<div class='header_bg'></div>
-		
+
 		<script>
 		 	var $ = jQuery;
-
 		 	$(function(){
-		 		$('#nav_trigger').on('click',function(){
+		 		$('#nav_trigger').on('click', function() {
 		 			$('.avia-menu.av-main-nav-wrap').toggle()
 		 		})
-		 	})
+				$('#header #header_meta .container form').on('click', '.ajax_search_response span', function() {
+					$(this).parent().remove()
+				})
+			})
+
 		</script>
 <!-- end header -->
 </header>

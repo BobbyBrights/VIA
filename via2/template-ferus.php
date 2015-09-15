@@ -23,43 +23,53 @@ global $avia_config;
         <main class='template-page content  <?php avia_layout_class( 'content' ); ?> units' <?php avia_markup_helper(array('context' => 'content','post_type'=>'page'));?>>
 
                             <div class="two_col">
-                              <p>In May 2014, from the 13th through the 18th, VIA launched our inaugural FERUS FESTIVAL, which we have designated as our incubation time for new projects in a workshop perfor- mance setting. Each evening features an artist or many artists with whom we are honored to have had the chance to work with.</p>
-                              <p>We are thrilled to have had Q2 Music as our Digital Partner. FERUS Festival was recorded for on-demand listening by our Digital Partner, Q2 Music, WQXR’s online radio station for con- temporary classical music at q2music.org. For the full list of performances on-demand, visit their page featuring our festival.</p>
+                              <img src="<?php bloginfo('url'); ?>/wp-content/themes/via2/images/layout/ferus_logo.png" />
+                              <?php echo get_field('ferus_description'); ?>
                             </div>
 
                             <div class="one_col">
                                 <?php dynamic_sidebar('homepage'); ?>
                             </div>
 
-                            <div class="four_col">
-                              <h1>2014</h1>
-                              <h3>MAY</h3>
-                              <ul>
-                                <li>
-                                  <span>13</span>
-                                  <span>Tue</span>
-                                  <span>8&10pm</span>
-                                  <span>Jeff Zeigler, Vijay Iyer, Scott Colley, Satoshi Takeishi</span></li>
-                                <li>
-                                  <span>14</span>
-                                  <span>Wed</span>
-                                  <span>8&10pm</span>
-                                  <span>Gity Razaz, Deborah Lifton, Mikhail Smigelski, Steve Beck, Vasko Dukovski, Serafim Smigelskiy</span></li>
-                                <li>
-                                  <span>16</span>
-                                  <span>Fri</span>
-                                  <span>8&10pm</span>
-                                  <span>Jeff Zeigler, Vijay Iyer, Scott Colley, Satoshi Takeishi</span></li>
-                              </ul>
-                              <p>The Stone NYC, E 2nd St & Ave C New York, NY</p>
-                              <p>Jeffrey Zeigler bringing together the wonderful musicians, Vijay Iyer, Scott Colley, and Satoshi Takeishi in a small debut at Ferus festival. This will be the first time that these musicians have ever shared the stage together in what will most assuredly be a gripping performance that will be an exploration of fresh possibilities and new sounds.</p>
+                            <div class="three_col">
+                            <?php
+                              $ferus_args = array( 'category_name' => 'ferus-posts', 'order' => 'ASC', 'posts_per_page' => -1 );
+                              $ferus = new WP_Query( $ferus_args );
+
+                              if ( $ferus->have_posts() ) : while ( $ferus->have_posts() ) : $ferus->the_post(); ?>
+
+                            <div id="ferus_<?php the_title(); ?>" class="ferus_section">
+                              <h1 class="ferus_section_title"><?php the_title(); ?></h1>
+                              <?php the_content(); ?>
                             </div>
 
-                            <div class="four_col">
-                              <a href="">2014</a>
-                              <a href="">2015</a>
+                            <?php endwhile; endif; wp_reset_query(); ?>
                             </div>
 
+                            <div class="four_col" id="year_selector">
+                            <?php if ( $ferus->have_posts() ) : while ( $ferus->have_posts() ) : $ferus->the_post(); ?>
+                              <button data-target="ferus_<?php the_title(); ?>" class="ferus_section_trigger"><?php the_title(); ?></button>
+                            <?php endwhile; endif; wp_reset_query(); ?>
+                            </div>
+
+                            <script type="text/javascript">
+                            var $ = jQuery;
+
+                            $(function(){
+                                $('.ferus_section_trigger').each(function(){
+                                  $(this).on('click', function(){
+                                    var dataTarget = $(this).attr('data-target')
+                                    $('.ferus_section').each(function(){
+                                      if( $(this).attr('id') !== dataTarget ) {
+                                        $(this).hide()
+                                      } else if ( $(this).attr('id') == dataTarget ) {
+                                        $(this).show()
+                                      }
+                                    })
+                                  })
+                                })
+                            })
+                            </script>
 
 
                     <?php
